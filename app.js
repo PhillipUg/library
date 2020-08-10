@@ -1,47 +1,50 @@
 let books = [];
 
-function Book(title, pages) {
-  this.title = title;
-  this.pages = pages;
-};
+function Book(title, author, pages) {
+	this.title = title;
+	this.author = author;
+	this.pages = pages;
+}
 
 function addBooks(book) {
-  books.push(book);
-};
+	books.push(book);
+}
 
-let book1 = new Book("Book 1", 150);
-let book2 = new Book("Book 2", 250);
-let book3 = new Book("Book 3", 50);
-let book4 = new Book("Book 4", 100);
-let book5 = new Book("Book 5", 300);
+let book1 = new Book('Book 1', 'Phillip Musiime', 150);
+let book2 = new Book('Book 2', 'Safa Erden', 250);
+let book3 = new Book('Book 3', 'Safa Erden', 50);
+let book4 = new Book('Book 4', 'Phillip Musiime', 100);
 
 addBooks(book1);
 addBooks(book2);
 addBooks(book3);
 addBooks(book4);
-addBooks(book5);
 
 function render() {
-  const displayBooks = books.map(function (item) {
-    return `<div class="book-item">${item.title} => ${item.pages} pages</div>`;
-  });
-  return displayBooks.join("");
-};
+	const displayBooks = books.map(function(item) {
+		return `<div class="book-item">Author: ${item.author} => Title: ${item.title} => ${item.pages} pages</div>`;
+	});
+	return displayBooks.join('');
+}
 
-let container = document.querySelector(".container");
+const addBook = document.getElementById('addBook');
+const form = document.querySelector('.hidden');
+addBook.addEventListener('click', () => {
+	form.classList.toggle('hidden');
+});
+
+const add = document.getElementById('add');
+add.addEventListener('click', (e) => {
+	e.preventDefault();
+	const author = document.getElementById('author').value;
+	const title = document.getElementById('title').value;
+	const pages = document.getElementById('pages').value;
+	let newBook = new Book(title, author, pages);
+	addBooks(newBook);
+	console.log(books);
+	let container = document.querySelector('.container');
+	container.innerHTML = render();
+});
+
+let container = document.querySelector('.container');
 container.innerHTML = render();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

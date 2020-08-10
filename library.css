@@ -1,6 +1,11 @@
 .book-item {
-  border: 1px solid red;
-  padding: 20px;
-  margin-bottom: 10px;
-  background-color: aqua;
+	border: 1px solid red;
+	padding: 20px;
+	margin-bottom: 10px;
+	background-color: aqua;
+}
+
+.hidden {
+	display: none;
+	margin: 20px;
 }
