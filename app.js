@@ -1,6 +1,7 @@
 let books = [];
-
+let idx = 0;
 function Book(title, author, pages) {
+	this.id = idx++;
 	this.title = title;
 	this.author = author;
 	this.pages = pages;
@@ -8,6 +9,7 @@ function Book(title, author, pages) {
 
 function addBooks(book) {
 	books.push(book);
+	console.log(books);
 }
 
 let book1 = new Book('Book 1', 'Phillip Musiime', 150);
@@ -20,10 +22,15 @@ addBooks(book2);
 addBooks(book3);
 addBooks(book4);
 
+const container = document.querySelector('.container');
 function render() {
-	let container = document.querySelector('.container');
-	const displayBooks = books.map(function(item) {
-		return `<div class="book-item">Author: ${item.author} => Title: ${item.title} => ${item.pages} pages</div>`;
+	const displayBooks = books.map(function(item, index) {
+		return `<div class="book-item" id=${item.id}>
+				Author: ${item.author} => 
+				Title: ${item.title} => 
+				${item.pages} pages
+				<button onclick="removeElement(${item.id})">Remove</button>
+				</div>`;
 	});
 	container.innerHTML = displayBooks.join('');
 }
@@ -46,3 +53,10 @@ add.addEventListener('click', (e) => {
 });
 
 render();
+
+function removeElement(id) {
+	books = books.filter((items) => items.id != id);
+	var element = document.getElementById(id);
+	element.parentNode.removeChild(element);
+	console.log(books);
+}
