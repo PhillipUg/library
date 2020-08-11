@@ -1,6 +1,8 @@
 let idx = 0;
 
-localStorage.setItem('obj', JSON.stringify(books));
+
+
+
 
 function Book(title, author, pages, read = false) {
 	this.id = idx++;
@@ -10,10 +12,13 @@ function Book(title, author, pages, read = false) {
 	this.read = read;
 }
 
-let local = JSON.parse(localStorage['books']);
 const container = document.querySelector('.container');
+
+
+
+let local = JSON.parse(localStorage['books']);
 function render() {
-	const displayBooks = local.map(function(item, index) {
+	const displayBooks = local.map(function (item) {
 		return `<div class="book-item" id=${item.id}>
 				Author: ${item.author} => 
 				Title: ${item.title} => 
@@ -28,11 +33,14 @@ function render() {
 
 const addBook = document.getElementById('addBook');
 const form = document.querySelector('.hidden');
+
+
 addBook.addEventListener('click', () => {
 	form.classList.toggle('hidden');
 });
 
 const add = document.getElementById('add');
+
 add.addEventListener('click', (e) => {
 	e.preventDefault();
 	const author = document.getElementById('author').value;
@@ -40,6 +48,7 @@ add.addEventListener('click', (e) => {
 	const pages = document.getElementById('pages').value;
 	let newBook = new Book(title, author, pages);
 	addToLocalStorageArray('books', newBook);
+
 	render();
 });
 
@@ -64,13 +73,14 @@ items.forEach((box) => {
 	});
 });
 
-function updateStorage() {
-	localStorage.setItem('books', JSON.stringify(books));
-}
+// function updateStorage() {
+// 	localStorage.setItem('books', JSON.stringify(books));
+// }
 
 function addToLocalStorageArray(name, value) {
 	var existing = JSON.parse(localStorage.getItem(name));
-
+	console.log(existing);
 	existing.push(value);
-	localStorage.setItem(name, existing.toString());
+	// localStorage.setItem(name, existing.toString());
+	localStorage.setItem(name, JSON.stringify(value));
 }
