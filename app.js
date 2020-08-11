@@ -2,16 +2,16 @@ let books = [];
 let idx = 0;
 
 function Book(title, author, pages, read = false) {
-	idx += 1;
-	this.id = idx;
-	this.title = title;
-	this.author = author;
-	this.pages = pages;
-	this.read = read;
+  idx += 1;
+  this.id = idx;
+  this.title = title;
+  this.author = author;
+  this.pages = pages;
+  this.read = read;
 }
 
 function addBooks(book) {
-	books.push(book);
+  books.push(book);
 }
 
 const book1 = new Book('Book 1', 'Phillip Musiime', 150);
@@ -24,55 +24,51 @@ addBooks(book2);
 addBooks(book3);
 addBooks(book4);
 
-// render the content
 
 function render() {
-	const container = document.querySelector('.container');
-	const displayBooks = books.map(
-		(item) =>
-			`<div class="book-item" id=${item.id}> Author: ${item.author} =>  Title: ${item.title} =>  ${item.pages} pages <input type="checkbox" id="status" name="status"> <label for="status">Read &nbsp; &nbsp;</label> <button onclick="removeElement(${item.id})">Remove</button> </div>`
-	);
-	container.innerHTML = displayBooks.join('');
+  const container = document.querySelector('.container');
+  const displayBooks = books.map(
+    (item) => `<div class="book-item" id=${item.id}> Author: ${item.author} =>  Title: ${item.title} =>  ${item.pages} pages <input type="checkbox" id="status" name="status"> <label for="status">Read &nbsp; &nbsp;</label> <button onclick="removeElement(${item.id})">Remove</button> </div>`,
+  );
+  container.innerHTML = displayBooks.join('');
 }
 
-//reveal form
+
 const addBook = document.getElementById('addBook');
 const form = document.querySelector('.hidden');
 addBook.addEventListener('click', () => {
-	form.classList.toggle('hidden');
+  form.classList.toggle('hidden');
 });
 
-// add books
+
 const add = document.getElementById('add');
 add.addEventListener('click', (e) => {
-	e.preventDefault();
-	const author = document.getElementById('author').value;
-	const title = document.getElementById('title').value;
-	const pages = document.getElementById('pages').value;
-	const newBook = new Book(title, author, pages);
-	addBooks(newBook);
-	render();
+  e.preventDefault();
+  const author = document.getElementById('author').value;
+  const title = document.getElementById('title').value;
+  const pages = document.getElementById('pages').value;
+  const newBook = new Book(title, author, pages);
+  addBooks(newBook);
+  render();
 });
 
 render();
 
-//remove element
+/* eslint-disable */
 function removeElement(id) {
-	books = books.filter((items) => items.id !== id);
-	const element = document.getElementById(id);
-	element.parentNode.removeChild(element);
+  books = books.filter((items) => items.id !== id);
+  const element = document.getElementById(id);
+  element.parentNode.removeChild(element);
 }
+/* eslint-disable */
 
-//Update status
-Book.prototype.updateStatus = (id) => {
-	books[id].read === false ? (books[id].read = true) : (books[id].read = false);
-};
+
+Book.prototype.updateStatus = (id) => (books[id].read === false ? books[id].read = true : books[id].read = false); // eslint-disable-line
 
 const items = document.querySelectorAll('#status');
 items.forEach((box) => {
-	box.addEventListener('click', (e) => {
-		const idx = e.currentTarget.parentNode.id;
-		books[idx - 1].updateStatus(idx - 1);
-		console.log(books[idx - 1].read);
-	});
+  box.addEventListener('click', (e) => {
+    const idx = e.currentTarget.parentNode.id;
+    books[idx - 1].updateStatus(idx - 1);
+  });
 });
