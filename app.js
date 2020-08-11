@@ -21,10 +21,11 @@ addBooks(book3);
 addBooks(book4);
 
 function render() {
+	let container = document.querySelector('.container');
 	const displayBooks = books.map(function(item) {
 		return `<div class="book-item">Author: ${item.author} => Title: ${item.title} => ${item.pages} pages</div>`;
 	});
-	return displayBooks.join('');
+	container.innerHTML = displayBooks.join('');
 }
 
 const addBook = document.getElementById('addBook');
@@ -41,10 +42,7 @@ add.addEventListener('click', (e) => {
 	const pages = document.getElementById('pages').value;
 	let newBook = new Book(title, author, pages);
 	addBooks(newBook);
-	console.log(books);
-	let container = document.querySelector('.container');
-	container.innerHTML = render();
+	render();
 });
 
-let container = document.querySelector('.container');
-container.innerHTML = render();
+render();
