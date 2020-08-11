@@ -1,10 +1,11 @@
 let books = [];
 let idx = 0;
-function Book(title, author, pages) {
+function Book(title, author, pages, read = false) {
 	this.id = idx++;
 	this.title = title;
 	this.author = author;
 	this.pages = pages;
+	this.read = read;
 }
 
 function addBooks(book) {
@@ -29,6 +30,8 @@ function render() {
 				Author: ${item.author} => 
 				Title: ${item.title} => 
 				${item.pages} pages
+				<input type="checkbox"  onclick="updateStatus(${item.id})" id="status" name="status">
+				<label for="status">Read &nbsp; &nbsp;</label>
 				<button onclick="removeElement(${item.id})">Remove</button>
 				</div>`;
 	});
@@ -59,4 +62,9 @@ function removeElement(id) {
 	var element = document.getElementById(id);
 	element.parentNode.removeChild(element);
 	console.log(books);
+}
+
+function updateStatus(id) {
+	books[id].read == false ? (books[id].read = true) : (books[id].read = false);
+	console.log(books[id]);
 }
