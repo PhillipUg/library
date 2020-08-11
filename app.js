@@ -10,7 +10,6 @@ function Book(title, author, pages, read = false) {
 
 function addBooks(book) {
 	books.push(book);
-	console.log(books);
 }
 
 let book1 = new Book('Book 1', 'Phillip Musiime', 150);
@@ -30,7 +29,7 @@ function render() {
 				Author: ${item.author} => 
 				Title: ${item.title} => 
 				${item.pages} pages
-				<input type="checkbox"  onclick="updateStatus(${item.id})" id="status" name="status">
+				<input type="checkbox" id="status" name="status">
 				<label for="status">Read &nbsp; &nbsp;</label>
 				<button onclick="removeElement(${item.id})">Remove</button>
 				</div>`;
@@ -64,7 +63,15 @@ function removeElement(id) {
 	console.log(books);
 }
 
-function updateStatus(id) {
+Book.prototype.updateStatus = (id) => {
 	books[id].read == false ? (books[id].read = true) : (books[id].read = false);
-	console.log(books[id]);
-}
+};
+
+const items = document.querySelectorAll('#status');
+items.forEach((box) => {
+	box.addEventListener('click', (e) => {
+		let idx = e.currentTarget.parentNode.id;
+		books[idx].updateStatus(idx);
+		console.log(books[idx]);
+	});
+});
