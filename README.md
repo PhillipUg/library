@@ -47,7 +47,7 @@ A simple library application built with HTML, CSS & Javascript.
 
 * [About the Project](#about-the-project)
   * [Built With](#built-with)
-  * [Live Demo](#Live Demo)
+  * [Live Demo](#live-demo)
 * [Contact](#contact)
 * [Acknowledgements](#acknowledgements)
 * [License](#license)
