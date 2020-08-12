@@ -34,7 +34,7 @@ A simple library application built with HTML, CSS & Javascript.
     This project is part of the Microverse curriculum and is done as an exercise in the Javascript section.
     <br />
     <br />
-    <a href="https://library-phillipug.herokuapp.com">View Demo</a>
+    <a href="https://rawcdn.githack.com/PhillipUg/library/4c8618cdd357352c0e2a1abfe112a9b068bf1d3c/index.html">View Demo</a>
     ·
     <a href="https://github.com/PhillipUg/library/issues">Report Bug</a>
     ·
