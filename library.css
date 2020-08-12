@@ -1,11 +1,26 @@
 .book-item {
-  border: 1px solid red;
-  padding: 20px;
-  margin-bottom: 10px;
-  background-color: aqua;
+	border: 1px solid red;
+	padding: 20px;
+	margin-bottom: 10px;
+	background-color: aqua;
 }
 
 .hidden {
-  display: none;
-  margin: 20px;
+	display: none;
+	margin: 20px;
+}
+
+.button-container {
+	display: flex;
+	height: 150px;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+}
+
+.form-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
 }
