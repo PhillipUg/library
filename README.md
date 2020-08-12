@@ -93,10 +93,10 @@ This project was built using these technologies.
 
 👤 **Safa Erden**
 
-- LinkedIn: [Phillip Musiime](https://www.linkedin.com/in/phillip-musiime/)
-- GitHub: [PhillipUg](https://github.com/PhillipUg)
-- Twitter: [@Phillip_Ug](https://twitter.com/Phillip_Ug)
-- E-mail: phillipmusiime@gmail.com
+- LinkedIn: [Safa ERDEN](https://www.linkedin.com/in/safaerden/)
+- GitHub: [Safa ERDEN](https://github.com/SafaErden)
+- Twitter: [@safaerden](https://twitter.com/safaerden)
+- E-mail: safaerden@gmail.com
 
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
