@@ -1,23 +1,23 @@
 let len = 0;
 if (JSON.parse(localStorage.getItem('books'))) {
-	len = JSON.parse(localStorage.getItem('books')).length;
+  len = JSON.parse(localStorage.getItem('books')).length;
 } else {
-	localStorage.setItem('books', JSON.stringify([]));
+  localStorage.setItem('books', JSON.stringify([]));
 }
 
 let idx;
 if (len === 0) {
-	idx = 0;
+  idx = 0;
 } else {
-	idx = JSON.parse(localStorage.getItem('books'))[len - 1].id + 1;
+  idx = JSON.parse(localStorage.getItem('books'))[len - 1].id + 1;
 }
 
 function Book(title, author, pages, read = false) {
-	this.id = idx;
-	this.title = title;
-	this.author = author;
-	this.pages = pages;
-	this.read = read;
+  this.id = idx;
+  this.title = title;
+  this.author = author;
+  this.pages = pages;
+  this.read = read;
 }
 
 const container = document.querySelector('.container');
@@ -26,51 +26,51 @@ const form = document.querySelector('.hidden');
 const add = document.getElementById('add');
 
 function render() {
-	const local = JSON.parse(localStorage.getItem('books'));
-	let checked;
-	const displayBooks = local.map((item) => {
-		if (item.read === true) {
-			checked = 'checked';
-		} else {
-			checked = '';
-		}
-		return `<div class="book-item" id=${item.id}><span class="bold"> Author: </span> ${item.author}  &nbsp;&nbsp;<span class="bold"> Title: </span> ${item.title} &nbsp;&nbsp;<span class="bold"> Pages:  </span> ${item.pages} &nbsp;&nbsp;<div class="status-wrapper"><input type="checkbox" id="status" name="status" class="status" ${checked}><label for="status">Read &nbsp; &nbsp;</label></div><button onclick="removeFromLocalStorageArray('books',${item.id})" class="remove-button btn btn-primary">Remove</button></div>`;
-	});
-	container.innerHTML = displayBooks.join('');
+  const local = JSON.parse(localStorage.getItem('books'));
+  let checked;
+  const displayBooks = local.map((item) => {
+    if (item.read === true) {
+      checked = 'checked';
+    } else {
+      checked = '';
+    }
+    return `<div class="book-item" id=${item.id}><span class="bold"> Author: </span> ${item.author}  &nbsp;&nbsp;<span class="bold"> Title: </span> ${item.title} &nbsp;&nbsp;<span class="bold"> Pages:  </span> ${item.pages} &nbsp;&nbsp;<div class="status-wrapper"><input type="checkbox" id="status" name="status" class="status" ${checked}><label for="status">Read &nbsp; &nbsp;</label></div><button onclick="removeFromLocalStorageArray('books',${item.id})" class="remove-button btn btn-primary">Remove</button></div>`;
+  });
+  container.innerHTML = displayBooks.join('');
 }
 
 addBook.addEventListener('click', () => {
-	form.classList.toggle('hidden');
+  form.classList.toggle('hidden');
 });
 
 function clear() {
-	document.getElementById('author').value = '';
-	document.getElementById('title').value = '';
-	document.getElementById('pages').value = '';
+  document.getElementById('author').value = '';
+  document.getElementById('title').value = '';
+  document.getElementById('pages').value = '';
 }
 
 function addToLocalStorageArray(name, value) {
-	const existing = JSON.parse(localStorage.getItem(name));
-	existing.push(value);
-	localStorage.setItem(name, JSON.stringify(existing));
-	render();
+  const existing = JSON.parse(localStorage.getItem(name));
+  existing.push(value);
+  localStorage.setItem(name, JSON.stringify(existing));
+  render();
 }
 
 add.addEventListener('click', () => {
-	const authorValue = document.getElementById('author').value;
-	const titleValue = document.getElementById('title').value;
-	const pagesValue = document.getElementById('pages').value;
-	const newBook = new Book(titleValue, authorValue, pagesValue);
-	addToLocalStorageArray('books', newBook);
-	clear();
+  const authorValue = document.getElementById('author').value;
+  const titleValue = document.getElementById('title').value;
+  const pagesValue = document.getElementById('pages').value;
+  const newBook = new Book(titleValue, authorValue, pagesValue);
+  addToLocalStorageArray('books', newBook);
+  clear();
 });
 
 render();
 
 function updateLocalStorageArray(name, id) {
-	const existing = JSON.parse(localStorage.getItem(name));
-	existing.forEach((i) => {
-		/* eslint-disable */
+  const existing = JSON.parse(localStorage.getItem(name));
+  existing.forEach((i) => {
+    /* eslint-disable */
 		if (i.id == id) {
 			if (i.read === false) {
 				i.read = true;
@@ -80,16 +80,16 @@ function updateLocalStorageArray(name, id) {
 		}
 	});
 	/* eslint-enable */
-	localStorage.setItem(name, JSON.stringify(existing));
+  localStorage.setItem(name, JSON.stringify(existing));
 }
 
 const checkboxes = document.querySelectorAll('#status');
 
 checkboxes.forEach((box) => {
-	box.addEventListener('click', (e) => {
-		const idx = e.currentTarget.parentNode.parentNode.id;
-		updateLocalStorageArray('books', idx);
-	});
+  box.addEventListener('click', (e) => {
+    const idx = e.currentTarget.parentNode.parentNode.id;
+    updateLocalStorageArray('books', idx);
+  });
 });
 
 /* eslint-disable */
