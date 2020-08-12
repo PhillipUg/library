@@ -28,12 +28,14 @@ function render() {
 			checked = '';
 		}
 		return `<div class="book-item" id=${item.id}>
-    Author: ${item.author} => 
-    Title: ${item.title} => 
-    ${item.pages} pages
-    <input type="checkbox" id="status" name="status" class="status" ${checked}>
-    <label for="status">Read &nbsp; &nbsp;</label>
-    <button onclick="removeFromLocalStorageArray('books',${item.id})">Remove</button>
+    <span class="bold"> Author: </span> ${item.author}  &nbsp;&nbsp; 
+    <span class="bold"> Title: </span> ${item.title} &nbsp;&nbsp;
+		<span class="bold"> Pages:  </span> ${item.pages} &nbsp;&nbsp;
+		<div class="status-wrapper">
+			<input type="checkbox" id="status" name="status" class="status" ${checked}>
+			<label for="status">Read &nbsp; &nbsp;</label>
+		</div>
+    <button onclick="removeFromLocalStorageArray('books',${item.id})" class="remove-button btn btn-primary">Remove</button>
     </div>`;
 	});
 	container.innerHTML = displayBooks.join('');
