@@ -32,7 +32,6 @@ function render() {
 
 		let label = document.createElement('LABEL');
 		label.textContent = 'Read   ';
-		label.setAttribute('for', 'status');
 
 		status.appendChild(check);
 		status.appendChild(label);

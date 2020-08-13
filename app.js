@@ -1,5 +1,7 @@
 import render from './content.js';
 
+let books = [];
+
 let len = 0;
 if (JSON.parse(localStorage.getItem('books'))) {
 	len = JSON.parse(localStorage.getItem('books')).length;
@@ -49,7 +51,8 @@ add.addEventListener('click', () => {
 	const titleValue = document.getElementById('title').value;
 	const pagesValue = document.getElementById('pages').value;
 	const newBook = new Book(titleValue, authorValue, pagesValue);
-	addToLocalStorageArray('books', newBook);
+	books.push(newBook);
+	addToLocalStorageArray('books', books[0]);
 	clear();
 });
 
@@ -92,8 +95,11 @@ removes.forEach((remove) => {
 /* eslint-disable */
 function removeFromLocalStorageArray(name, id) {
 	let existing = JSON.parse(localStorage.getItem(name));
+	console.log(existing[0]);
 	existing = existing.filter((items) => items.id != id);
+
+	books = existing;
 	localStorage.setItem(name, JSON.stringify(existing));
-	location.reload();
+	//location.reload();
 }
 /* eslint-enable */
