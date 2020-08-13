@@ -47,6 +47,7 @@ A simple library application built with HTML, CSS & Javascript.
 
 * [About the Project](#about-the-project)
   * [Built With](#built-with)
+  * [Live Demo](#live-demo)
 * [Contact](#contact)
 * [Acknowledgements](#acknowledgements)
 * [License](#license)
@@ -80,6 +81,9 @@ This project was built using these technologies.
 * CSS
 * JavaScript
 * Chrome Dev Tools
+
+### Live Demo
+[Live Demo](https://rawcdn.githack.com/PhillipUg/library/4c8618cdd357352c0e2a1abfe112a9b068bf1d3c/index.html)
 
 <!-- CONTACT -->
 ## Contact
