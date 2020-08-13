@@ -34,9 +34,51 @@ function render() {
 		} else {
 			checked = '';
 		}
-		return `<div class="book-item" id=${item.id}><span class="bold"> Author: </span> ${item.author}  &nbsp;&nbsp;<span class="bold"> Title: </span> ${item.title} &nbsp;&nbsp;<span class="bold"> Pages:  </span> ${item.pages} &nbsp;&nbsp;<div class="status-wrapper"><input type="checkbox" id="status" name="status" class="status" ${checked}><label for="status">Read &nbsp; &nbsp;</label></div><button onclick="removeFromLocalStorageArray('books',${item.id})" class="remove-button btn btn-primary">Remove</button></div>`;
+
+		let newDiv = document.createElement('div');
+		newDiv.className = 'book-item';
+		newDiv.id = item.id;
+
+		let newSpan1 = document.createElement('span');
+		newSpan1.className = 'bold';
+		newSpan1.textContent = 'Author: ' + item.author + '  ';
+
+		let newSpan2 = document.createElement('span');
+		newSpan2.className = 'bold';
+		newSpan2.innerHTML = 'Title: ' + item.title + ' ';
+
+		let newSpan3 = document.createElement('span');
+		newSpan3.className = 'bold';
+		newSpan3.innerHTML = 'Pages: ' + item.pages + ' ';
+
+		let status = document.createElement('div');
+		status.className = 'status-wrapper';
+
+		let check = document.createElement('INPUT');
+		check.setAttribute('type', 'checkbox');
+		check.className = 'status';
+		check.id = 'status';
+		check.name = 'status';
+
+		let label = document.createElement('LABEL');
+		label.textContent = 'Read   ';
+		label.setAttribute('for', 'status');
+
+		status.appendChild(check);
+		status.appendChild(label);
+
+		let remove = document.createElement('BUTTON');
+		remove.className = 'remove-button btn btn-primary';
+		remove.textContent = 'Remove';
+
+		newDiv.appendChild(newSpan1);
+		newDiv.appendChild(newSpan2);
+		newDiv.appendChild(newSpan3);
+		newDiv.appendChild(status);
+		newDiv.appendChild(remove);
+
+		container.appendChild(newDiv);
 	});
-	container.innerHTML = displayBooks.join('');
 }
 
 addBook.addEventListener('click', () => {
@@ -92,10 +134,19 @@ checkboxes.forEach((box) => {
 	});
 });
 
+const removes = document.querySelectorAll('.remove-button');
+
+removes.forEach((remove) => {
+	remove.addEventListener('click', (e) => {
+		const idx = e.currentTarget.parentNode.id;
+		removeFromLocalStorageArray('books', idx);
+	});
+});
+
 /* eslint-disable */
 function removeFromLocalStorageArray(name, id) {
 	let existing = JSON.parse(localStorage.getItem(name));
-	existing = existing.filter((items) => items.id !== id);
+	existing = existing.filter((items) => items.id != id);
 	localStorage.setItem(name, JSON.stringify(existing));
 	location.reload();
 }
