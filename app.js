@@ -28,6 +28,11 @@ function render() {
     } else {
       checked = "";
     }
+
+    let newDiv = document.createElement("div");
+    newDiv.className = "book-item";
+    newDiv.id = item.id;
+    console.log(newDiv);
     return `<div class="book-item" id=${item.id}>
     Author: ${item.author} => 
     Title: ${item.title} => 
